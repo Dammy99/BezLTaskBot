@@ -27,9 +27,13 @@ namespace BezLBot
         private static readonly Dictionary<long, ChatType> chatTypes = [];
         private static readonly Dictionary<long, string> usersChatCodes = [];
 
-        static async Task Main()
+        static async Task Main(string[] args)
         {
-            botClient = new TelegramBotClient("7965761291:AAFF_yg2PMTe1Gpww7e8NMUBSa3xss_u1qk");
+            string botToken = Environment.GetEnvironmentVariable("BOT_TOKEN");
+            Console.WriteLine("Enter bot token: ");
+            string botTokenToConnect = Console.ReadLine()!;
+            
+            botClient = new TelegramBotClient(botTokenToConnect);
             botClient.StartReceiving(Update, Error);
 
             Console.ReadLine();
